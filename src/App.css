@@ -1,0 +1,458 @@
+/* ===== FLAME 情绪焰火 — 安抚向暖色主题 ===== */
+
+:root {
+  --bg-primary: #1a1028;
+  --bg-secondary: #231836;
+  --bg-card: rgba(30, 20, 50, 0.78);
+  --text-primary: #f8f4ff;
+  --text-secondary: #dcd4ec;
+  --text-dim: #bfb8d4;
+  --border-color: rgba(180, 160, 220, 0.18);
+  --border-glow: rgba(220, 140, 140, 0.25);
+
+  --neon-cyan: #7ec8c8;
+  --neon-purple: #bfa8e0;
+  --neon-pink: #e8888e;
+  --neon-orange: #e8a87c;
+
+  --temp-green: #7ecb8a;
+  --temp-yellow: #e8d878;
+  --temp-orange: #e8a858;
+  --temp-red: #e86060;
+
+  --flame-gradient: linear-gradient(180deg, #e8888e 0%, #e8a87c 50%, #e0c878 100%);
+}
+
+body {
+  margin: 0;
+  background: linear-gradient(170deg, #1a1028 0%, #1e1838 40%, #1a1030 70%, #221835 100%);
+  background-attachment: fixed;
+  color: var(--text-primary);
+  font-family: "PingFang SC", "Noto Sans SC", system-ui, sans-serif;
+  min-height: 100vh;
+}
+
+/* ===== 呼吸式极光背景 ===== */
+body::before {
+  content: "";
+  position: fixed;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background:
+    radial-gradient(ellipse at 30% 60%, rgba(200, 140, 160, 0.12) 0%, transparent 50%),
+    radial-gradient(ellipse at 70% 30%, rgba(140, 160, 210, 0.1) 0%, transparent 50%),
+    radial-gradient(ellipse at 50% 80%, rgba(180, 150, 120, 0.08) 0%, transparent 40%);
+  animation: aurora-drift 15s ease-in-out infinite alternate;
+  pointer-events: none;
+  z-index: 0;
+}
+
+@keyframes aurora-drift {
+  0% {
+    transform: translate(0, 0) scale(1);
+    opacity: 0.7;
+  }
+  33% {
+    transform: translate(2%, -1%) scale(1.02);
+    opacity: 1;
+  }
+  66% {
+    transform: translate(-1%, 2%) scale(0.98);
+    opacity: 0.8;
+  }
+  100% {
+    transform: translate(1%, -2%) scale(1.01);
+    opacity: 1;
+  }
+}
+
+/* ===== 全局浮动微光粒子 ===== */
+body::after {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+  background-image:
+    radial-gradient(2px 2px at 15% 85%, rgba(232, 168, 124, 0.3) 0%, transparent 100%),
+    radial-gradient(3px 3px at 25% 20%, rgba(190, 160, 220, 0.25) 0%, transparent 100%),
+    radial-gradient(2px 2px at 40% 70%, rgba(126, 200, 200, 0.28) 0%, transparent 100%),
+    radial-gradient(3px 3px at 55% 15%, rgba(232, 136, 142, 0.25) 0%, transparent 100%),
+    radial-gradient(2px 2px at 65% 80%, rgba(220, 180, 140, 0.28) 0%, transparent 100%),
+    radial-gradient(2px 2px at 75% 40%, rgba(180, 160, 220, 0.25) 0%, transparent 100%),
+    radial-gradient(3px 3px at 85% 60%, rgba(126, 200, 200, 0.25) 0%, transparent 100%),
+    radial-gradient(2px 2px at 10% 45%, rgba(232, 200, 120, 0.22) 0%, transparent 100%),
+    radial-gradient(2px 2px at 50% 55%, rgba(200, 160, 200, 0.25) 0%, transparent 100%),
+    radial-gradient(3px 3px at 90% 10%, rgba(232, 168, 124, 0.22) 0%, transparent 100%);
+  background-size: 200% 200%;
+  animation: ember-float 22s ease-in-out infinite;
+}
+
+@keyframes ember-float {
+  0% {
+    background-position: 0% 0%;
+    opacity: 0.55;
+  }
+  25% {
+    background-position: 3% -2%;
+    opacity: 0.8;
+  }
+  50% {
+    background-position: -1% 3%;
+    opacity: 0.6;
+  }
+  75% {
+    background-position: 2% 1%;
+    opacity: 0.85;
+  }
+  100% {
+    background-position: 0% 0%;
+    opacity: 0.55;
+  }
+}
+
+/* ===== 页面环境色 accent（顶部柔光） ===== */
+.page-accent {
+  position: fixed;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  max-width: 800px;
+  height: 320px;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.5;
+  animation: accent-breathe 8s ease-in-out infinite;
+}
+
+@keyframes accent-breathe {
+  0%, 100% { opacity: 0.4; }
+  50% { opacity: 0.65; }
+}
+
+/* 各页面 accent 色调 */
+.accent-analyze {
+  background: radial-gradient(ellipse at 50% 0%, rgba(200, 140, 180, 0.18) 0%, transparent 70%);
+}
+
+.accent-result {
+  background: radial-gradient(ellipse at 50% 0%, rgba(126, 200, 200, 0.15) 0%, transparent 70%);
+}
+
+.accent-history {
+  background: radial-gradient(ellipse at 50% 0%, rgba(190, 170, 225, 0.16) 0%, rgba(160, 140, 200, 0.06) 40%, transparent 70%);
+}
+
+.accent-profile {
+  background: radial-gradient(ellipse at 50% 0%, rgba(232, 168, 124, 0.14) 0%, transparent 70%);
+}
+
+.accent-cbt {
+  background: radial-gradient(ellipse at 50% 0%, rgba(140, 200, 180, 0.14) 0%, transparent 70%);
+}
+
+.accent-crisis {
+  background: radial-gradient(ellipse at 50% 0%, rgba(220, 150, 130, 0.12) 0%, transparent 70%);
+}
+
+/* ===== Ant Design overrides ===== */
+.ant-card {
+  border: 1px solid rgba(180, 160, 220, 0.1) !important;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.2) !important;
+}
+
+.ant-table {
+  background: transparent !important;
+}
+
+.ant-table-thead > tr > th {
+  background: rgba(255, 255, 255, 0.02) !important;
+  border-bottom: 1px solid rgba(180, 160, 220, 0.12) !important;
+}
+
+.ant-table-tbody > tr > td {
+  border-bottom: 1px solid rgba(180, 160, 220, 0.06) !important;
+}
+
+.ant-table-tbody > tr:hover > td {
+  background: rgba(200, 160, 180, 0.04) !important;
+}
+
+.ant-pagination-item-active {
+  border-color: var(--accent-rose) !important;
+}
+
+.ant-pagination-item-active a {
+  color: var(--accent-rose) !important;
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 3px;
+}
+
+/* ===== 发光文字（柔化版） ===== */
+.neon-text {
+  color: var(--neon-cyan);
+  text-shadow: 0 0 40px rgba(126, 200, 200, 0.4), 0 0 8px rgba(126, 200, 200, 0.3);
+}
+
+.neon-text-pink {
+  color: var(--neon-pink);
+  text-shadow: 0 0 40px rgba(232, 136, 142, 0.4), 0 0 8px rgba(232, 136, 142, 0.3);
+}
+
+/* ===== 玻璃拟态卡片 ===== */
+.glass-card {
+  background: rgba(28, 22, 48, 0.85);
+  backdrop-filter: blur(24px);
+  border: 1px solid rgba(180, 160, 220, 0.18);
+  border-radius: 16px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
+  padding: 24px 20px;
+  margin: 12px 0;
+}
+
+/* ===== 通用按钮 ===== */
+.btn-primary {
+  display: block;
+  background: linear-gradient(135deg, var(--neon-pink), var(--neon-purple));
+  color: #fff;
+  border: none;
+  border-radius: 48px;
+  padding: 20px 48px;
+  font-size: 20px;
+  font-weight: 600;
+  text-align: center;
+  cursor: pointer;
+  box-shadow: 0 4px 24px rgba(200, 130, 150, 0.3);
+  transition: opacity 0.3s, transform 0.3s;
+  max-width: 480px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.btn-primary:hover {
+  opacity: 0.92;
+  transform: translateY(-1px);
+}
+
+.btn-primary:active {
+  opacity: 0.84;
+  transform: scale(0.98);
+}
+
+.btn-primary:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.btn-secondary {
+  background: transparent;
+  color: var(--neon-cyan);
+  border: 1px solid var(--neon-cyan);
+  border-radius: 48px;
+  padding: 16px 40px;
+  font-size: 16px;
+  text-align: center;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.btn-secondary:hover {
+  background: rgba(126, 200, 200, 0.08);
+}
+
+/* ===== 免责声明 ===== */
+.disclaimer-bar {
+  text-align: center;
+  color: var(--text-dim);
+  font-size: 14px;
+  padding: 20px 32px;
+  margin-top: 24px;
+  line-height: 1.6;
+}
+
+/* ===== 加载动画 ===== */
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.loading-spinner {
+  width: 60px;
+  height: 60px;
+  border: 4px solid rgba(180, 160, 220, 0.15);
+  border-top-color: var(--accent-rose);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+/* ===== 火焰动画 ===== */
+@keyframes flicker {
+  0%, 100% { opacity: 0.92; transform: scaleY(1); }
+  50% { opacity: 1; transform: scaleY(1.04); }
+}
+
+.flame {
+  animation: flicker 2.5s ease-in-out infinite;
+}
+
+/* ===== 风险脉冲（放缓） ===== */
+@keyframes pulse-red {
+  0%, 100% { box-shadow: 0 0 12px var(--temp-red); }
+  50% { box-shadow: 0 0 36px var(--temp-red), 0 0 64px var(--temp-red); }
+}
+
+/* ===== 通用 textarea ===== */
+textarea::placeholder {
+  color: #8a84a0 !important;
+  opacity: 0.65;
+}
+
+/* ===== 呼吸动画 ===== */
+@keyframes breath-anim {
+  0%, 100% { transform: scale(1); opacity: 0.75; }
+  50% { transform: scale(1.45); opacity: 1; }
+}
+
+/* ===== 治疗性微交互 ===== */
+
+/* 全局柔和过渡 */
+button, a, input, textarea, .glass-card {
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+button {
+  transition: background 0.3s ease, transform 0.3s ease, opacity 0.3s ease, box-shadow 0.3s ease;
+}
+
+input:focus, textarea:focus {
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* 柔和焦点环 — 替换刺眼的默认outline */
+input:focus-visible, textarea:focus-visible, button:focus-visible {
+  outline: 2px solid rgba(232, 136, 142, 0.4);
+  outline-offset: 2px;
+}
+
+/* 玻璃卡片悬浮 — 微升 */
+.glass-card.interactive:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.25);
+  border-color: rgba(200, 160, 180, 0.25);
+}
+
+/* ===== 微肯定标签 ===== */
+.affirmation-tag {
+  display: inline-block;
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 13px;
+  color: var(--neon-cyan);
+  background: rgba(126, 200, 200, 0.08);
+  border: 1px solid rgba(126, 200, 200, 0.2);
+  animation: fadeInUp 0.6s ease both;
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ===== 柔和呼吸点（快速接地工具） ===== */
+.breath-dot {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--neon-cyan);
+  animation: softPulse 3s ease-in-out infinite;
+}
+
+@keyframes softPulse {
+  0%, 100% { opacity: 0.3; transform: scale(0.8); }
+  50% { opacity: 1; transform: scale(1.2); }
+}
+
+/* ===== 渐进式内容显示 ===== */
+.reveal-card {
+  animation: fadeInUp 0.5s ease both;
+}
+.reveal-card:nth-child(1) { animation-delay: 0.05s; }
+.reveal-card:nth-child(2) { animation-delay: 0.12s; }
+.reveal-card:nth-child(3) { animation-delay: 0.19s; }
+.reveal-card:nth-child(4) { animation-delay: 0.26s; }
+.reveal-card:nth-child(5) { animation-delay: 0.33s; }
+
+/* ===== 接地技术卡片 ===== */
+.grounding-step {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 16px 20px;
+  border-radius: 12px;
+  background: rgba(255,255,255,0.02);
+  border: 1px solid rgba(180, 160, 220, 0.12);
+  margin-bottom: 12px;
+  transition: background 0.3s ease, border-color 0.3s ease;
+}
+
+.grounding-step:hover {
+  background: rgba(200, 160, 180, 0.04);
+  border-color: rgba(200, 160, 180, 0.25);
+}
+
+.grounding-number {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 16px;
+  flex-shrink: 0;
+}
+
+/* ===== 情绪温度计柔化 ===== */
+.emotion-temp-display {
+  font-size: 72px;
+  font-weight: 200;
+  text-align: center;
+  letter-spacing: -2px;
+  line-height: 1;
+}
+
+/* ===== CBT卡片步骤过渡 ===== */
+.cbt-step-enter {
+  animation: fadeInUp 0.4s ease both;
+}
+
+/* ===== 验证性消息气泡 ===== */
+.validation-bubble {
+  display: inline-block;
+  padding: 8px 16px;
+  border-radius: 16px;
+  font-size: 13px;
+  background: rgba(126, 200, 200, 0.06);
+  border: 1px solid rgba(126, 200, 200, 0.15);
+  color: var(--neon-cyan);
+  text-align: center;
+  animation: fadeInUp 0.5s ease both;
+}
